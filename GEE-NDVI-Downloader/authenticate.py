@@ -53,7 +53,7 @@ def authenticate_oauth():
     if os.path.exists(token_file):
         print("📋 Loading existing OAuth credentials...")
         creds = Credentials.from_authorized_user_file(token_file, SCOPES)
-    
+
     # If there are no valid credentials, initiate OAuth flow
     if not creds or not creds.valid:
         if creds and creds.expired and creds.refresh_token:
@@ -75,9 +75,11 @@ def authenticate_oauth():
                 creds = flow.run_local_server(
                     port=8080,
                     host='localhost',
-                    open_browser=True
+                    open_browser=True,
+                    access_type='offline',  # Corregido: access_type
+                    prompt='consent'        # Fuerza re-consentimiento
                 )
-            except:
+            except Exception as e:
                 # Fallback to console mode (works on headless servers)
                 print("⚠️  GUI not available, using console authentication...")
                 creds = flow.run_console()
