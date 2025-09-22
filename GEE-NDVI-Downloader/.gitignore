@@ -127,6 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+NDVI_Ingestion/
 
 # Spyder project settings
 .spyderproject
