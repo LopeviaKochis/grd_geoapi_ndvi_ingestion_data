@@ -1,6 +1,9 @@
 # Configuration file for GEE NDVI Downloader
 
 # Google Earth Engine Asset ID - Path to your FeatureCollection
+from sys import platform
+
+
 ASSET_ID = 'projects/grd-geoapi-ndvi/assets/cartas_100k'
 
 # Date range for satellite data collection
@@ -11,8 +14,11 @@ END_DATE = '2024-12-07'
 # All processed NDVI images will be stored here as GEE Assets
 OUTPUT_ASSET_FOLDER = 'projects/grd-geoapi-ndvi/assets/ndvi_outputs'
 
-# Local output directory for downloaded files (Debian server)
-LOCAL_OUTPUT_DIR = '/home/pedro/grd_api_ndvi/gee_grids'
+# Detectar sistema operativo y configurar rutas apropiadas
+if platform.system() == "Windows":
+    LOCAL_OUTPUT_DIR = r'C:\Users\Pedro Lopevia\Desktop\ndvi_downloads'
+else:
+    LOCAL_OUTPUT_DIR = '/home/pedro/grd_api_ndvi/gee_grids'
 
 # Field name in FeatureCollection that identifies each grid
 ID_FIELD = 'CODIGO'
